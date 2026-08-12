@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EGG EXPRESS — Autenticación</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo-egg.svg') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,9 +63,7 @@
             {{-- Logo --}}
             <div class="relative z-10">
                 <a href="{{ url('/') }}" class="inline-flex items-center gap-3 group">
-                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-egg-400 to-egg-300 flex items-center justify-center text-egg-900 shadow-xl text-3xl group-hover:scale-105 transition-transform">
-                        🥚
-                    </div>
+                    <img src="{{ asset('logo-egg.svg') }}" alt="EGG EXPRESS" class="w-14 h-14 rounded-2xl shadow-xl group-hover:scale-105 transition-transform">
                     <div>
                         <span class="font-heading font-extrabold text-2xl text-white tracking-tight">EGG<span class="text-egg-400">EXPRESS</span></span>
                         <span class="block text-[10px] text-egg-300 font-bold tracking-widest uppercase">Comercializadora de Huevos</span>

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EGG EXPRESS — Comercializadora de Huevos</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo-egg.svg') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,9 +68,7 @@
             <div class="flex justify-between items-center h-20">
                 {{-- Logo --}}
                 <a href="/" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-egg-400 flex items-center justify-center text-egg-900 text-xl shadow-lg group-hover:scale-105 transition-transform">
-                        🥚
-                    </div>
+                    <img src="{{ asset('logo-egg.svg') }}" alt="EGG EXPRESS" class="w-10 h-10 rounded-xl shadow-lg group-hover:scale-105 transition-transform">
                     <div>
                         <span class="font-heading font-extrabold text-xl text-white tracking-tight">EGG<span class="text-egg-400">EXPRESS</span></span>
                         <span class="block text-[9px] text-egg-300 font-semibold tracking-widest uppercase leading-none">Comercializadora de Huevos</span>
@@ -189,18 +188,14 @@
                 </div>
 
                 {{-- Visual hero --}}
-                <div class="hidden lg:flex items-center justify-center relative">
+                <div class="hidden lg:flex items-center justify-center relative w-full">
                     <div class="absolute inset-0 bg-gradient-to-tr from-egg-400/20 to-egg-300/10 rounded-[3rem] blur-2xl"></div>
-                    <div class="relative bg-egg-900/50 backdrop-blur-sm border border-egg-700/30 rounded-[3rem] p-10 shadow-2xl">
-                        <div class="text-center space-y-4">
-                            <div class="text-9xl animate-float select-none">🥚</div>
-                            <div class="flex justify-center gap-3">
-                                <div class="text-5xl animate-float-slow select-none" style="animation-delay:0.5s">🥚</div>
-                                <div class="text-5xl animate-float select-none" style="animation-delay:1s">🥚</div>
-                                <div class="text-5xl animate-float-slow select-none" style="animation-delay:1.5s">🥚</div>
-                            </div>
-                            <p class="text-egg-300 font-bold font-heading text-lg">EGG EXPRESS</p>
-                            <p class="text-egg-500 text-sm">Calidad garantizada</p>
+                    <div class="relative w-full max-w-md aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border border-egg-700/30 group">
+                        {{-- Puedes reemplazar este enlace por la ruta de tu imagen local, ej: src="{{ asset('img/huevos.jpg') }}" --}}
+                        <img src="https://s03.s3c.es/imag/_v0/1200x675/0/f/a/huevos-portada2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-egg-950/95 via-egg-900/40 to-transparent flex flex-col justify-end p-8 opacity-90 group-hover:opacity-100 transition-opacity">
+                            <p class="text-egg-300 font-bold font-heading text-2xl mb-1">EGG EXPRESS</p>
+                            <p class="text-egg-100 text-sm">Calidad garantizada</p>
                         </div>
                     </div>
                 </div>
@@ -303,35 +298,7 @@
         </div>
     </section>
 
-    {{-- ======================== CÓMO FUNCIONA ======================== --}}
-    <section id="como-funciona" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-14">
-                <span class="text-egg-600 font-bold tracking-widest uppercase text-sm">Proceso</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-egg-900 font-heading tracking-tight mt-2">
-                    ¿Cómo funciona?
-                </h2>
-                <p class="mt-4 text-stone-500 text-lg">Simple, rápido y seguro.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                @foreach([
-                    ['emoji'=>'📝','num'=>'01','title'=>'Regístrate','desc'=>'Crea tu cuenta gratis en minutos. Solo necesitas tu correo y contraseña.','color'=>'bg-egg-50 border-egg-200'],
-                    ['emoji'=>'🥚','num'=>'02','title'=>'Elige tus huevos','desc'=>'Explora nuestro catálogo y agrega al carrito los productos que quieras.','color'=>'bg-amber-50 border-amber-200'],
-                    ['emoji'=>'🚚','num'=>'03','title'=>'Confirma tu pedido','desc'=>'Ingresa tu dirección, elige el método de pago y confirma.','color'=>'bg-orange-50 border-orange-200'],
-                    ['emoji'=>'✅','num'=>'04','title'=>'Recibe en casa','desc'=>'Nosotros nos encargamos de llevar tus huevos frescos directamente a tu puerta.','color'=>'bg-emerald-50 border-emerald-200'],
-                ] as $step)
-                <div class="bg-white rounded-[2rem] p-7 border {{ $step['color'] }} border-2 text-center card-hover relative">
-                    <span class="absolute top-4 right-5 text-[11px] font-bold text-stone-300 font-mono">{{ $step['num'] }}</span>
-                    <div class="text-5xl mb-5 select-none">{{ $step['emoji'] }}</div>
-                    <h3 class="text-xl font-bold text-egg-900 font-heading mb-3">{{ $step['title'] }}</h3>
-                    <p class="text-stone-500 text-sm leading-relaxed">{{ $step['desc'] }}</p>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
+   
     {{-- ======================== NOSOTROS ======================== --}}
     <section id="nosotros" class="py-20 bg-egg-900 relative overflow-hidden">
         <div class="absolute inset-0 opacity-5" style="background-image: url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23F5C842' fill-opacity='1'%3E%3Cellipse cx='40' cy='38' rx='16' ry='20'/%3E%3C/g%3E%3C/svg%3E\");"></div>

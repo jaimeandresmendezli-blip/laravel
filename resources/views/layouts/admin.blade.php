@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EGG EXPRESS — Panel Administrador</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo-egg.svg') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,14 +68,12 @@
     <div class="min-h-screen flex flex-col lg:flex-row">
 
         {{-- ===================== SIDEBAR ===================== --}}
-        <aside class="w-full lg:w-72 bg-egg-900 text-egg-200 flex-shrink-0 flex flex-col justify-between border-r border-egg-950">
+        <aside class="lg:sticky lg:top-0 lg:h-screen w-full lg:w-72 bg-egg-900 text-egg-200 flex-shrink-0 flex flex-col justify-between border-r border-egg-950 z-40">
             <div>
                 {{-- Marca --}}
                 <div class="h-20 px-6 flex items-center justify-between bg-egg-950/70 border-b border-egg-950">
                     <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-egg-400 to-egg-300 flex items-center justify-center text-egg-900 shadow-lg shadow-egg-950/40 text-xl">
-                            🥚
-                        </div>
+                        <img src="{{ asset('logo-egg.svg') }}" alt="EGG EXPRESS" class="w-10 h-10 rounded-xl shadow-lg shadow-egg-950/40">
                         <div>
                             <span class="font-heading font-extrabold text-xl text-white tracking-tight">EGG<span class="text-egg-400">EXPRESS</span></span>
                             <span class="block text-[10px] text-egg-400 font-semibold tracking-widest uppercase">Panel Administrador</span>
@@ -129,12 +128,6 @@
                             <span>Historial Movimientos</span>
                         </a>
 
-                        <a href="{{ route('admin.inventario.create') }}"
-                           class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150
-                           {{ request()->routeIs('admin.inventario.create') ? 'bg-egg-800 text-egg-400 border-l-4 border-egg-400' : 'text-egg-300 hover:text-white hover:bg-egg-800/40' }}">
-                            <i class="fas fa-exchange-alt w-5 text-center"></i>
-                            <span>Registrar Movimiento</span>
-                        </a>
                     </div>
 
                     {{-- Operaciones --}}
@@ -165,19 +158,19 @@
             </div>
 
             {{-- Footer usuario --}}
-            <div class="p-4 bg-egg-950/80 border-t border-egg-950">
+            <div class="p-4 mt-auto">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-egg-400 text-egg-900 flex items-center justify-center font-bold font-heading text-sm">
+                    <div class="w-10 h-10 rounded-full bg-egg-800/80 text-egg-200 flex items-center justify-center font-bold font-heading text-sm">
                         {{ strtoupper(substr(Auth::user()->nombre ?? 'A', 0, 1)) }}
                     </div>
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-semibold text-white truncate">{{ Auth::user()->nombre }}</p>
-                        <p class="text-xs text-egg-400 font-medium">Administrador</p>
+                        <p class="text-[11px] text-egg-400 truncate">{{ Auth::user()->correo ?? 'Administrador' }}</p>
                     </div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" title="Cerrar sesión" class="text-egg-500 hover:text-rose-400 transition-colors p-1">
-                            <i class="fas fa-sign-out-alt"></i>
+                        <button type="submit" title="Cerrar sesión" class="text-egg-500 hover:text-egg-300 transition-colors p-2">
+                            <i class="fas fa-sign-out-alt text-lg"></i>
                         </button>
                     </form>
                 </div>
@@ -230,6 +223,7 @@
         </div>
     </div>
 
+    @stack('scripts')
     @yield('js')
 </body>
 </html>

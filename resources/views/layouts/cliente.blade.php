@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EGG EXPRESS — Portal Cliente</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('logo-egg.svg') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,13 +56,11 @@
     <div class="min-h-screen flex flex-col lg:flex-row">
 
         {{-- ===================== SIDEBAR CLIENTE ===================== --}}
-        <aside class="w-full lg:w-72 bg-egg-900 text-egg-200 flex-shrink-0 flex flex-col justify-between border-r border-egg-950">
+        <aside class="lg:sticky lg:top-0 lg:h-screen w-full lg:w-72 bg-egg-900 text-egg-200 flex-shrink-0 flex flex-col justify-between border-r border-egg-950 z-40">
             <div>
                 <div class="h-20 px-6 flex items-center justify-between bg-egg-950/70 border-b border-egg-950">
                     <a href="{{ route('cliente.dashboard') }}" class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-egg-400 to-egg-300 flex items-center justify-center text-egg-900 shadow-lg text-xl">
-                            🛒
-                        </div>
+                        <img src="{{ asset('logo-egg.svg') }}" alt="EGG EXPRESS" class="w-10 h-10 rounded-xl shadow-lg">
                         <div>
                             <span class="font-heading font-extrabold text-xl text-white tracking-tight">EGG<span class="text-egg-400">EXPRESS</span></span>
                             <span class="block text-[10px] text-egg-400 font-semibold tracking-widest uppercase">Portal Cliente</span>
@@ -138,10 +137,6 @@
                     <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden text-egg-700 mr-2">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-egg-100 text-egg-800 border border-egg-300">
-                        <span class="w-2 h-2 rounded-full bg-egg-400 animate-pulse"></span>
-                        Portal Activo
-                    </span>
                 </div>
 
                 <div class="flex items-center gap-3" x-data="{ open: false }">
