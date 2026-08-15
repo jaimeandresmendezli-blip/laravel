@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\AdminPedidoController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +47,10 @@ Route::prefix('admin')
             ->name('productos.toggle');
 
         // US-0005 / US-0006 — Inventario
+        Route::get('inventario/crear', function () {
+            return redirect()->route('admin.inventario.index');
+        });
         Route::get('inventario', [inventarioController::class, 'index'])->name('inventario.index');
-        Route::get('inventario/crear', [InventarioController::class, 'create'])->name('inventario.create');
         Route::post('inventario', [InventarioController::class, 'store'])->name('inventario.store');
 
         // US-0008 (admin) — Pedidos
