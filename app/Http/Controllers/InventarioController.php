@@ -42,13 +42,6 @@ class InventarioController extends Controller
         return view('admin.inventario.index', compact('movimientos', 'productos'));
     }
 
-    /** US-0005: Formulario entrada/salida manual */
-    public function create()
-    {
-        $productos = Producto::where('estado', 'activo')->orderBy('nombre')->get();
-        return view('admin.inventario.create', compact('productos'));
-    }
-
     /** US-0005: Registrar movimiento manual */
     public function store(Request $request)
     {

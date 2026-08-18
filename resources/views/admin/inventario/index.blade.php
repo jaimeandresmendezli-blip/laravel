@@ -6,10 +6,77 @@
             <h1 class="text-3xl font-extrabold font-heading text-egg-900 tracking-tight">Historial de Inventario</h1>
             <p class="text-stone-500 text-sm mt-1">Entradas y salidas de productos.</p>
         </div>
-        <a href="{{ route('admin.inventario.create') }}"
-           class="inline-flex items-center gap-2 bg-gradient-to-r from-egg-900 to-egg-800 hover:from-egg-800 hover:to-egg-700 text-egg-400 font-semibold px-5 py-2.5 rounded-xl shadow-md transition-all active:scale-[0.98]">
-            <i class="fas fa-plus"></i> Registrar Movimiento
-        </a>
+        <button type="button" onclick="abrirMovimientoModal()"
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-egg-900 to-egg-800 hover:from-egg-800 hover:to-egg-700 text-egg-400 font-semibold px-5 py-2.5 rounded-xl shadow-md transition-all active:scale-[0.98]">
+            <i class="fas fa-exchange-alt"></i> Registrar Movimiento
+        </button>
+    </div>
+
+    <div id="movimiento-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="px-6 py-4 border-b border-stone-200 bg-stone-50/60 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-stone-800">Entrada o Salida Manual</h3>
+                        <p class="text-xs text-stone-500">Se actualizará el stock automáticamente</p>
+                    </div>
+                </div>
+                <button type="button" onclick="cerrarMovimientoModal()" class="text-stone-400 hover:text-stone-700 text-xl" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            @if($errors->any())
+                <div class="mx-6 mt-4 bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-xl">
+                    <ul class="text-xs space-y-1 list-disc list-inside">
+                        @foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('admin.inventario.store') }}" class="p-6 space-y-5">
+                @csrf
+                <div>
+                    <label class="block text-sm font-semibold text-stone-700 mb-2">Producto *</label>
+                    <select name="id_producto" required class="w-full rounded-xl border border-stone-200 px-4 py-2.5 text-sm focus:border-egg-500 focus:ring-2 focus:ring-egg-400/20 outline-none bg-white">
+                        <option value="">-- Seleccionar producto --</option>
+                        @foreach($productos->where('estado', 'activo') as $p)
+                            <option value="{{ $p->id_producto }}" {{ old('id_producto') == $p->id_producto ? 'selected' : '' }}>
+                                {{ $p->nombre }} (Stock actual: {{ $p->cantidad }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-stone-700 mb-2">Tipo de movimiento *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer border-stone-200 hover:border-emerald-300">
+                            <input type="radio" name="tipo_movimiento" value="entrada" {{ old('tipo_movimiento', 'entrada') == 'entrada' ? 'checked' : '' }} class="text-emerald-600">
+                            <div><p class="font-semibold text-sm text-emerald-700">Entrada</p><p class="text-xs text-stone-500">Aumenta el stock</p></div>
+                        </label>
+                        <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer border-stone-200 hover:border-rose-300">
+                            <input type="radio" name="tipo_movimiento" value="salida" {{ old('tipo_movimiento') == 'salida' ? 'checked' : '' }} class="text-rose-600">
+                            <div><p class="font-semibold text-sm text-rose-700">Salida</p><p class="text-xs text-stone-500">Reduce el stock</p></div>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-stone-700 mb-2">Cantidad *</label>
+                    <input type="number" name="cantidad" value="{{ old('cantidad') }}" min="1" required class="w-full rounded-xl border border-stone-200 px-4 py-2.5 text-sm font-semibold focus:border-egg-500 focus:ring-2 focus:ring-egg-400/20 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-stone-700 mb-2">Motivo *</label>
+                    <input type="text" name="motivo" value="{{ old('motivo') }}" maxlength="255" required placeholder="Ej: Compra a proveedor, Merma, Ajuste..." class="w-full rounded-xl border border-stone-200 px-4 py-2.5 text-sm focus:border-egg-500 focus:ring-2 focus:ring-egg-400/20 outline-none">
+                </div>
+                <div class="border-t border-stone-200 pt-4 flex items-center justify-end gap-3">
+                    <button type="button" onclick="cerrarMovimientoModal()" class="px-5 py-2.5 text-sm font-semibold text-stone-700 bg-white border border-stone-200 hover:bg-stone-100 rounded-xl transition-all">Cancelar</button>
+                    <button type="submit" class="px-6 py-2.5 text-sm font-semibold text-egg-400 bg-gradient-to-r from-egg-900 to-egg-800 hover:from-egg-800 hover:to-egg-700 rounded-xl shadow-md flex items-center gap-2"><i class="fas fa-save"></i> Registrar</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     {{-- Filtros --}}
@@ -88,4 +155,24 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+function abrirMovimientoModal() {
+    const modal = document.getElementById('movimiento-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function cerrarMovimientoModal() {
+    const modal = document.getElementById('movimiento-modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+document.getElementById('movimiento-modal').addEventListener('click', function (event) {
+    if (event.target === this) cerrarMovimientoModal();
+});
+@if($errors->any())
+abrirMovimientoModal();
+@endif
+</script>
+@endpush
 @endsection
