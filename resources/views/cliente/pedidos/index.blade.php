@@ -94,7 +94,8 @@
                                 @if($p->estado==='pendiente')
                                 <form method="POST" action="{{ route('cliente.pedidos.cancelar', $p->id_pedido) }}" class="inline">
                                     @csrf @method('DELETE')
-                                    <button type="submit" onclick="return confirm('¿Cancelar este pedido?')"
+                                        <button type="submit"
+                                            data-swal-confirm="¿Cancelar este pedido?"
                                             class="inline-flex items-center gap-1 text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors">
                                         <i class="fas fa-times"></i>
                                     </button>

@@ -33,7 +33,8 @@
                 <h3 class="font-heading font-bold text-egg-900">Productos ({{ $detalles->count() }})</h3>
                 <form method="POST" action="{{ route('cliente.carrito.vaciar') }}">
                     @csrf @method('DELETE')
-                    <button type="submit" onclick="return confirm('¿Vaciar todo el carrito?')"
+                        <button type="submit"
+                            data-swal-confirm="¿Vaciar todo el carrito?"
                             class="text-xs text-rose-500 hover:text-rose-700 font-semibold flex items-center gap-1 hover:bg-rose-50 px-3 py-1.5 rounded-lg transition-colors">
                         <i class="fas fa-trash"></i> Vaciar carrito
                     </button>

@@ -173,24 +173,7 @@
             </header>
 
             <main class="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
-                @if(session('success'))
-                    <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-2xl flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-check text-sm"></i>
-                        </div>
-                        <span class="font-medium text-sm">{{ session('success') }}</span>
-                    </div>
-                @endif
-                @if($errors->any())
-                    <div class="mb-6 bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-2xl flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-exclamation-triangle text-sm"></i>
-                        </div>
-                        <ul class="text-sm font-medium space-y-1">
-                            @foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('components.sweet-alerts')
                 @yield('content')
             </main>
         </div>

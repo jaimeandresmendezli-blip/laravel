@@ -434,10 +434,7 @@
                         <p class="text-xs text-stone-500">Comercializadora de Huevos</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-6 text-sm">
-                    <a href="{{ route('login') }}" class="hover:text-egg-400 transition-colors">Ingresar</a>
-                    <a href="{{ route('register') }}" class="hover:text-egg-400 transition-colors">Registrarse</a>
-                </div>
+              
                 <p class="text-xs text-stone-600">&copy; {{ date('Y') }} EGG EXPRESS. Todos los derechos reservados.</p>
             </div>
         </div>

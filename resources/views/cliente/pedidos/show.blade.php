@@ -12,7 +12,8 @@
         @if($pedido->estado==='pendiente')
         <form method="POST" action="{{ route('cliente.pedidos.cancelar', $pedido->id_pedido) }}">
             @csrf @method('DELETE')
-            <button type="submit" onclick="return confirm('¿Estás seguro de cancelar este pedido? El stock será devuelto.')"
+                <button type="submit"
+                    data-swal-confirm="¿Estás seguro de cancelar este pedido? El stock será devuelto."
                     class="inline-flex items-center gap-2 bg-rose-50 hover:bg-rose-100 text-rose-600 hover:text-rose-700 font-semibold px-4 py-2.5 rounded-xl border border-rose-200 text-sm transition-all">
                 <i class="fas fa-times-circle"></i> Cancelar Pedido
             </button>

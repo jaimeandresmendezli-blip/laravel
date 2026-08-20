@@ -193,10 +193,6 @@
                     <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden text-egg-700 hover:text-egg-900 mr-2">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <span class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-egg-100 text-egg-800 border border-egg-300">
-                        <span class="w-2 h-2 rounded-full bg-egg-400 animate-pulse"></span>
-                        Sistema en línea
-                    </span>
                 </div>
 
                 <div class="flex items-center gap-3" x-data="{ open: false }">
@@ -228,25 +224,7 @@
 
             {{-- Contenido principal --}}
             <main class="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto">
-
-                @if(session('success'))
-                    <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm">
-                        <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-check text-sm"></i>
-                        </div>
-                        <span class="font-medium text-sm">{{ session('success') }}</span>
-                    </div>
-                @endif
-
-                @if(session('error'))
-                    <div class="mb-6 bg-rose-50 border border-rose-200 text-rose-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm">
-                        <div class="w-8 h-8 rounded-xl bg-rose-500 text-white flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-exclamation-triangle text-sm"></i>
-                        </div>
-                        <span class="font-medium text-sm">{{ session('error') }}</span>
-                    </div>
-                @endif
-
+                @include('components.sweet-alerts')
                 @yield('content')
             </main>
         </div>
