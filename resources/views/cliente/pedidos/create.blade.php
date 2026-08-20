@@ -67,36 +67,14 @@
                         <h4 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-4 flex items-center gap-2">
                             <i class="fas fa-credit-card text-egg-500"></i> Método de Pago
                         </h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all {{ old('metodo_pago','efectivo')==='efectivo' ? 'border-egg-500 bg-egg-50' : 'border-stone-200 hover:border-egg-300' }}">
-                                <input type="radio" name="metodo_pago" value="efectivo" {{ old('metodo_pago','efectivo')==='efectivo'?'checked':'' }} class="text-egg-600">
-                                <div>
-                                    <p class="font-semibold text-sm text-egg-900">💵 Efectivo</p>
-                                    <p class="text-xs text-stone-500">Al recibir</p>
-                                </div>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all {{ old('metodo_pago')==='transferencia' ? 'border-blue-500 bg-blue-50' : 'border-stone-200 hover:border-blue-300' }}">
-                                <input type="radio" name="metodo_pago" value="transferencia" {{ old('metodo_pago')==='transferencia'?'checked':'' }} class="text-blue-600">
-                                <div>
-                                    <p class="font-semibold text-sm text-egg-900">🏦 Transferencia</p>
-                                    <p class="text-xs text-stone-500">Bancaria</p>
-                                </div>
-                            </label>
-                            <label class="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all {{ old('metodo_pago')==='nequi' ? 'border-purple-500 bg-purple-50' : 'border-stone-200 hover:border-purple-300' }}">
-                                <input type="radio" name="metodo_pago" value="nequi" {{ old('metodo_pago')==='nequi'?'checked':'' }} class="text-purple-600">
-                                <div>
-                                    <p class="font-semibold text-sm text-egg-900">📱 Nequi</p>
-                                    <p class="text-xs text-stone-500">Pago digital</p>
-                                </div>
-                            </label>
+                        <input type="hidden" name="metodo_pago" value="demo">
+                        <div class="flex items-center gap-3 p-4 rounded-xl border-2 border-egg-500 bg-egg-50">
+                            <i class="fas fa-vial text-egg-700 text-lg"></i>
+                            <div>
+                                <p class="font-semibold text-sm text-egg-900">Pago demo</p>
+                                <p class="text-xs text-stone-500">No se realiza ningún cobro real</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-stone-700 mb-2">Referencia de pago (opcional)</label>
-                        <input type="text" name="referencia_pago" value="{{ old('referencia_pago') }}" maxlength="100"
-                               class="w-full rounded-xl border border-stone-200 px-4 py-2.5 text-sm focus:border-egg-500 focus:ring-2 focus:ring-egg-400/20 outline-none transition-all"
-                               placeholder="Número de comprobante o referencia">
                     </div>
 
                 </form>
@@ -138,7 +116,7 @@
 
             <div class="bg-egg-50 border border-egg-200 rounded-2xl p-4 text-xs text-egg-800 space-y-2">
                 <p class="font-bold flex items-center gap-1"><i class="fas fa-info-circle text-egg-600"></i> Información</p>
-                <p class="leading-relaxed text-egg-700">Al confirmar, el stock se reserva automáticamente y tu pedido quedará en estado <strong>Pendiente</strong>.</p>
+                <p class="leading-relaxed text-egg-700">Al confirmar, se registrará un pago demo aprobado y se descontará el stock automáticamente.</p>
             </div>
         </div>
     </div>

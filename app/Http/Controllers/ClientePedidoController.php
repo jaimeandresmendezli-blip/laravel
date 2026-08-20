@@ -58,8 +58,7 @@ class ClientePedidoController extends Controller
             'telefono_entrega'  => 'required|string|max:20',
             'referencia'        => 'nullable|string|max:255',
             'observaciones'     => 'nullable|string',
-            'metodo_pago'       => 'required|in:efectivo,transferencia,nequi',
-            'referencia_pago'   => 'nullable|string|max:100',
+            'metodo_pago'       => 'required|in:demo',
         ], [
             'direccion_entrega.required' => 'La dirección de entrega es obligatoria.',
             'barrio.required'            => 'El barrio es obligatorio.',
@@ -99,7 +98,7 @@ class ClientePedidoController extends Controller
                 'observaciones'     => $request->observaciones,
                 'estado_entrega'    => 'pendiente',
                 'fecha'             => now(),
-                'estado'            => 'pendiente',
+                'estado'            => 'pagado',
                 'total'             => $total,
             ]);
 
@@ -129,19 +128,20 @@ class ClientePedidoController extends Controller
             // Crear registro de pago
             Pago::create([
                 'id_pedido'       => $pedido->id_pedido,
-                'metodo_pago'     => $request->metodo_pago,
+                'metodo_pago'     => 'demo',
                 'monto'           => $total,
-                'estado_pago'     => 'pendiente',
-                'referencia_pago' => $request->referencia_pago,
+                'estado_pago'     => 'pagado',
+                'referencia_pago' => 'DEMO-'.$pedido->id_pedido,
                 'fecha'           => now(),
             ]);
 
             // Marcar carrito como comprado
             $carrito->update(['estado' => 'comprado']);
+
         });
 
         return redirect()->route('cliente.pedidos.index')
-            ->with('success', 'Pedido registrado correctamente.');
+            ->with('success', 'Pago demo aprobado y pedido confirmado.');
     }
 
     /** Detalle de un pedido */
