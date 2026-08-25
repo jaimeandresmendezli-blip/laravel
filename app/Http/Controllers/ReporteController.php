@@ -81,3 +81,5 @@ class ReporteController extends Controller
         return $pdf->download('reporte-egg-express-' . now()->format('Ymd') . '.pdf');
     }
 }
+
+
