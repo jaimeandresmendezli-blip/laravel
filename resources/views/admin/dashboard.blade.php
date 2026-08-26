@@ -118,17 +118,7 @@
                     <i class="fas fa-arrow-right text-egg-500 group-hover:translate-x-1 transition-transform"></i>
                 </a>
 
-                <a href="{{ route('admin.inventario.create') }}"
-                   class="flex items-center justify-between p-4 rounded-xl bg-amber-50 hover:bg-amber-100 text-egg-900 border border-amber-200 transition-all group">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-exchange-alt text-amber-600 text-lg"></i>
-                        <div>
-                            <p class="font-semibold text-sm">Movimiento Inventario</p>
-                            <p class="text-xs text-amber-700">Entrada o salida manual</p>
-                        </div>
-                    </div>
-                    <i class="fas fa-arrow-right text-amber-500 group-hover:translate-x-1 transition-transform"></i>
-                </a>
+
 
                 <a href="{{ route('admin.usuarios.create') }}"
                    class="flex items-center justify-between p-4 rounded-xl bg-stone-50 hover:bg-stone-100 text-stone-800 border border-stone-200 transition-all group">
